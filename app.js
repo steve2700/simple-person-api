@@ -85,6 +85,10 @@ app.delete('/api/persons/:id', (req, res) => {
     res.json({ message: 'Person deleted successfully' });
   });
 });
+// Default route for /api
+app.get('/api', (req, res) => {
+  res.json({ message: 'Welcome to the API' });
+});
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
