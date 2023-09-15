@@ -53,6 +53,17 @@ app.get('/api/persons/:id', (req, res) => {
     res.json(row);
   });
 });
+// Handle requests to /api/persons without an ID
+app.get('/api/persons', (req, res) => {
+  // Query the SQLite database to fetch all persons
+  db.all('SELECT * FROM persons', (err, rows) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+    // Respond with the list of all persons
+    res.json(rows);
+  });
+});
 
 // UPDATE: Modify details of an existing person by ID
 app.put('/api/persons/:id', (req, res) => {
